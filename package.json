@@ -1,0 +1,25 @@
+{
+  "name": "gaming-dashboard",
+  "version": "1.0.0",
+  "description": "Website dashboard untuk game online",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "index.js"
+  },
+  "keywords": [
+    "express",
+    "nodejs",
+    "game",
+    "dashboard"
+  ],
+  "author": "Developer",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

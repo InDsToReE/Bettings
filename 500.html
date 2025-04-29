@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>500 - Kesalahan Server</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6C63FF;
+            --secondary: #F50057;
+            --dark: #0A0E29;
+            --light: #F7F7F7;
+            --warning: #FF9800;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--dark), #1A1F40);
+            color: var(--light);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 1rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .error-container {
+            max-width: 600px;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .error-icon {
+            font-size: 6rem;
+            color: var(--warning);
+            margin-bottom: 1rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.7;
+                transform: scale(1.1);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--warning), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .home-button {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .home-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(245, 0, 87, 0.4);
+        }
+
+        .retry-button {
+            background: transparent;
+            color: var(--light);
+            border: 2px solid var(--primary);
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin-left: 1rem;
+        }
+
+        .retry-button:hover {
+            background: rgba(108, 99, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        .gear {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.1);
+            z-index: 1;
+        }
+
+        .gear-1 {
+            top: 20%;
+            left: 10%;
+            font-size: 8rem;
+            animation: rotate 20s linear infinite;
+        }
+
+        .gear-2 {
+            bottom: 10%;
+            right: 15%;
+            font-size: 10rem;
+            animation: rotate 25s linear infinite reverse;
+        }
+
+        .gear-3 {
+            top: 60%;
+            left: 15%;
+            font-size: 6rem;
+            animation: rotate 15s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .error-details {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-family: monospace;
+            color: rgba(255, 255, 255, 0.7);
+            text-align: left;
+            display: none;
+        }
+
+        .show-details-btn {
+            background: none;
+            border: none;
+            color: var(--primary);
+            text-decoration: underline;
+            cursor: pointer;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .error-icon {
+                font-size: 4rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .gear-1 {
+                font-size: 5rem;
+            }
+
+            .gear-2 {
+                font-size: 7rem;
+            }
+
+            .gear-3 {
+                font-size: 4rem;
+            }
+
+            .button-group {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .retry-button {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="gear gear-1">
+        <i class="fas fa-cog"></i>
+    </div>
+    <div class="gear gear-2">
+        <i class="fas fa-cog"></i>
+    </div>
+    <div class="gear gear-3">
+        <i class="fas fa-cog"></i>
+    </div>
+
+    <div class="error-container">
+        <div class="error-icon">
+            <i class="fas fa-exclamation-triangle"></i>
+        </div>
+        <h1>500</h1>
+        <p>Oops! Terjadi kesalahan pada server kami. Tim teknisi kami sedang bekerja untuk memperbaikinya.</p>
+        
+        <div class="button-group">
+            <a href="/" class="home-button">Kembali ke Dashboard</a>
+            <button onclick="location.reload()" class="retry-button">Coba Lagi</button>
+        </div>
+        
+        <button class="show-details-btn" id="showDetails">Tampilkan Detail Teknis</button>
+        
+        <div class="error-details" id="errorDetails">
+            <p>Error: Internal Server Error</p>
+            <p>Status: 500</p>
+            <p>Path: <span id="currentPath"></span></p>
+            <p>Time: <span id="currentTime"></span></p>
+        </div>
+    </div>
+
+    <script>
+        // Menampilkan path dan waktu error
+        document.getElementById('currentPath').textContent = window.location.pathname;
+        document.getElementById('currentTime').textContent = new Date().toLocaleString();
+        
+        // Toggle detail teknis
+        document.getElementById('showDetails').addEventListener('click', function() {
+            const details = document.getElementById('errorDetails');
+            if (details.style.display === 'block') {
+                details.style.display = 'none';
+                this.textContent = 'Tampilkan Detail Teknis';
+            } else {
+                details.style.display = 'block';
+                this.textContent = 'Sembunyikan Detail Teknis';
+            }
+        });
+        
+        // Efek parallax untuk gear
+        document.addEventListener('mousemove', function(e) {
+            const gear1 = document.querySelector('.gear-1');
+            const gear2 = document.querySelector('.gear-2');
+            const gear3 = document.querySelector('.gear-3');
+            
+            const moveX1 = (e.clientX / window.innerWidth - 0.5) * 20;
+            const moveY1 = (e.clientY / window.innerHeight - 0.5) * 20;
+            
+            const moveX2 = (e.clientX / window.innerWidth - 0.5) * -30;
+            const moveY2 = (e.clientY / window.innerHeight - 0.5) * -30;
+            
+            const moveX3 = (e.clientX / window.innerWidth - 0.5) * 25;
+            const moveY3 = (e.clientY / window.innerHeight - 0.5) * 25;
+            
+            gear1.style.transform = `translateX(${moveX1}px) translateY(${moveY1}px) rotate(0deg)`;
+            gear2.style.transform = `translateX(${moveX2}px) translateY(${moveY2}px) rotate(0deg)`;
+            gear3.style.transform = `translateX(${moveX3}px) translateY(${moveY3}px) rotate(0deg)`;
+        });
+    </script>
+</body>
+</html>

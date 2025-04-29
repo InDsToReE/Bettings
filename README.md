@@ -1,145 +1,62 @@
-# Game Hub Dashboard
+# Panduan Instalasi dan Penggunaan Express API Router
 
-Aplikasi dashboard modern untuk game online dengan antarmuka pengguna yang stylish dan responsif. Dashboard ini dirancang untuk menampilkan berbagai game dan menyediakan akses cepat ke fitur-fitur utama.
+## Instalasi
 
-![Game Hub Dashboard](https://api.placeholder.com/400/320)
+1. Pastikan Node.js sudah terinstal di komputer Anda (versi 14.x atau lebih tinggi)
+2. Clone atau download kode proyek ini
+3. Buka terminal dan arahkan ke folder proyek
+4. Jalankan perintah berikut untuk menginstal semua dependensi:
 
-## ✨ Fitur
-
-- 💻 **Dashboard Modern** - UI yang clean dan stylish dengan glassmorphism effect
-- 🎮 **Game Cards** - Tampilan card interaktif untuk game Crash dan BlackJack
-- 📱 **Fully Responsive** - Tampilan optimal di berbagai ukuran perangkat
-- 🚀 **Express Backend** - API server dengan routing yang sederhana dan efisien
-- 🔄 **Easy Deployment** - Siap deploy ke Vercel dengan konfigurasi yang disediakan
-
-## 🚀 Tech Stack
-
-- **Frontend**: HTML5, CSS3, JavaScript Modern
-- **Backend**: Node.js dengan Express.js
-- **Deployment**: Vercel
-- **Icon Library**: Font Awesome
-- **Animation**: CSS Animations + JavaScript Interactions
-
-## 📋 Struktur Proyek
-
-```
-project-folder/
-├── index.js                  # Express server utama
-├── package.json            # Konfigurasi npm dan dependencies
-├── vercel.json             # Konfigurasi deployment Vercel
-├── README.md               # Dokumentasi proyek ini
-├── public/                 # File statis
-│   ├── dashboard.html      # Halaman dashboard utama
-│   ├── crash.html          # Halaman game Crash
-│   ├── blackjack.html      # Halaman game BlackJack
-│   ├── 404.html            # Halaman error 404
-│   ├── 500.html            # Halaman error 500
-│   ├── css/                # File CSS (jika terpisah)
-│   ├── js/                 # File JavaScript (jika terpisah)
-│   └── assets/             # Gambar, font, dll
-└── node_modules/           # Dependencies (dibuat saat npm install)
+```bash
+npm install
 ```
 
-## 🛠️ Instalasi & Penggunaan
+## Menjalankan Server
 
-### Prasyarat
-
-- Node.js (versi 14.x atau lebih baru)
-- npm atau yarn
-
-### Langkah-langkah
-
-1. **Clone repository**
-   ```bash
-   git clone https://github.com/yourusername/game-hub-dashboard.git
-   cd game-hub-dashboard
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Jalankan server dalam mode development**
-   ```bash
-   npm run dev
-   ```
-
-4. **Jalankan server dalam mode production**
-   ```bash
-   npm start
-   ```
-
-Server berjalan di `http://localhost:3000` secara default.
-
-## 🌐 Routing
-
-- `/` - Halaman dashboard utama
-- `/games/original/crash` - Game Crash
-- `/games/original/blackjack` - Game BlackJack
-
-## 📦 Deployment
-
-### Deploy ke Vercel
-
-1. **Install Vercel CLI**
-   ```bash
-   npm install -g vercel
-   ```
-
-2. **Login ke Vercel**
-   ```bash
-   vercel login
-   ```
-
-3. **Deploy**
-   ```bash
-   vercel
-   ```
-
-4. **Deploy ke production**
-   ```bash
-   vercel --prod
-   ```
-
-Lihat [panduan deployment](DEPLOYMENT.md) untuk informasi lebih detail.
-
-## 🔧 Konfigurasi
-
-### Menambahkan Game Baru
-
-1. Buat file HTML baru untuk game tersebut di folder `public/`
-2. Tambahkan rute baru di `index.js`:
-   ```javascript
-   app.get('/games/original/new-game', (req, res) => {
-     res.sendFile(path.join(__dirname, 'public', 'new-game.html'));
-   });
-   ```
-3. Tambahkan rute ke `vercel.json`:
-   ```json
-   {
-     "src": "/games/original/new-game",
-     "dest": "index.js"
-   }
-   ```
-4. Tambahkan card baru di dashboard.html
-
-## 🤝 Kontribusi
-
-Kontribusi sangat diterima! Silakan buat pull request atau buka issue untuk perbaikan atau fitur baru.
-
-## 📜 Lisensi
-
-[MIT License](LICENSE)
-
-## 📞 Kontak
-
-Jika Anda memiliki pertanyaan atau saran, silakan buka issue di repository ini atau hubungi kami di pokecoke41@gmail.com
-
----
-
-⭐️ Dibuat dengan ❤️ oleh RizzDev
-
+### Mode Development (dengan auto-reload)
+```bash
+npm run dev
 ```
 
-> **Catatan**: Jangan lupa untuk menyesuaikan bagian-bagian seperti URL repository, informasi kontak, dan credit sesuai dengan informasi sebenarnya dari proyek Anda.
+### Mode Production
+```bash
+npm start
+```
+
+Server akan berjalan di `http://localhost:3000`
+
+## Struktur Router
+
+Berikut adalah rute-rute yang sudah dikonfigurasi:
+
+- `/` → menampilkan `public/dashboard.html`
+- `/games/original/crash` → menampilkan `public/crash.html`
+- `/games/original/blackjack` → menampilkan `public/blackjack.html`
+
+## Struktur Folder Public
+
+Pastikan Anda memiliki file-file berikut di folder `public`:
+
+- `dashboard.html` - Halaman utama dashboard
+- `crash.html` - Halaman game Crash
+- `blackjack.html` - Halaman game BlackJack
+- `404.html` - Halaman error untuk route yang tidak ditemukan
+- `500.html` - Halaman error untuk kesalahan server
+
+## Menambahkan Rute Baru
+
+Untuk menambahkan rute baru, buka file `app.js` dan tambahkan kode berikut:
+
+```javascript
+app.get('/route-baru', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'nama-file.html'));
+});
+```
+
+## Error Handling
+
+Aplikasi ini sudah dilengkapi dengan error handler untuk:
+- 404 - Rute tidak ditemukan
+- 500 - Error server
+
+Pastikan Anda membuat file `404.html` dan `500.html` di folder `public`.
