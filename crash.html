@@ -450,25 +450,27 @@
             
             // Calculate random crash point - weighted to be challenging
             // Most games will crash under 2x, but there's a small chance for very high multipliers
-            const rand = Math.random();
-            if (rand < 0.70) {
-                // 70% chance to crash below 2x
-                crashPoint = 1 + Math.random();
-            } else if (rand < 0.90) {
-                // 20% chance to crash between 2x and 5x
-                crashPoint = 2 + Math.random() * 3;
-            } else if (rand < 0.98) {
-                // 8% chance to crash between 5x and 20x
-                crashPoint = 5 + Math.random() * 15;
-            } else {
-                // 2% chance to crash between 20x and 100x
-                crashPoint = 20 + Math.random() * 80;
-            }
-            
-            // 0.1% chance for a special high multiplier up to 10000x
-            if (Math.random() < 0.001) {
-                crashPoint = 100 + Math.random() * 9900;
-            }
+            let rand = Math.random();
+
+if (rand < 0.40) {
+    // 40% chance to crash below 2x
+    crashPoint = 1 + Math.random();
+} else if (rand < 0.75) {
+    // 35% chance to crash between 2x and 5x
+    crashPoint = 2 + Math.random() * 3;
+} else if (rand < 0.95) {
+    // 20% chance to crash between 5x and 20x
+    crashPoint = 5 + Math.random() * 15;
+} else {
+    // 5% chance to crash between 20x and 100x
+    crashPoint = 20 + Math.random() * 80;
+}
+
+// 0.1% chance for a special high multiplier up to 10000x
+if (Math.random() < 0.001) {
+    crashPoint = 100 + Math.random() * 9900;
+}
+
             
             updateUI();
             resetChart();
