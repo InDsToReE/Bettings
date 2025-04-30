@@ -452,10 +452,10 @@
             // Most games will crash under 2x, but there's a small chance for very high multipliers
             let rand = Math.random();
 
-if (rand < 0.40) {
+if (rand < 0.49) {
     // 40% chance to crash below 2x
     crashPoint = 1 + Math.random();
-} else if (rand < 0.65) {
+} else if (rand < 0.51) {
     // 35% chance to crash between 2x and 5x
     crashPoint = 2 + Math.random() * 3;
 } else if (rand < 1.5) {
